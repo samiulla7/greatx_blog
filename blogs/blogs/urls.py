@@ -31,10 +31,8 @@ urlpatterns = [
     path('edit/',views.editBlog,name='editblogdetails'),
     path('editblogdetails/',views.editBlogDetails,name='editblogdetails'),
     path('delete/',views.deleteBlogDetails,name='deleteblogdetals'),
-    path('viewsingleblog/',views.viewSingleBlog,name='viewsingleblog'),
-    
+    path('viewsingleblog/',views.viewSingleBlog,name='viewsingleblog'),    
 ]
-
 
 if settings.DEBUG:
     urlpatterns +=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
