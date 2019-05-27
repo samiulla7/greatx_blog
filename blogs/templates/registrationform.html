@@ -1,0 +1,100 @@
+{% load staticfiles %}
+
+<html lang="en">
+    <head>
+        <title>Registration Page</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <script src="{% static 'script/js/jquery.min.js' %}"></script>
+        <script src="{% static 'script/js/popper.min.js' %}"></script>
+        <script src="{% static 'script/js/bootstrap.min.js' %}"></script>
+    </head>
+
+    <body class="bg-registration">
+        <section>
+        <div class="container text-justify text-center">                                                
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8 border border-danger m-5 p-3 text-white font-weight-bolder">
+                            <h2 class="a-spacing-small text-dark p-4">Registration form</h2> 
+                        <form action="{% url 'saveuserdetails' %}" class="was-validated bg-dark p-4" method="post">
+                            {% csrf_token %} 
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <h5><label for="fname">Firstname:</label></h5>
+                                    <input type="text" class="form-control mb-2  mr-sm-2  bg-dark text-white"  id="fname" placeholder="Enter Firstname" name="firstname" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <h5><label for="lname">Lastname:</label></h5>
+                                    <input type="text" class="form-control mb-2 mr-sm-2  bg-dark text-white"  id="lname" placeholder="Enter Lastname" name="lastname" required>
+                                    <div class="valid-feedback">Valid.</div>                               
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center" >
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <h5><label for="cno">Contact_No:</label></h5>
+                                    <input type="number" class="form-control mb-2 mr-sm-2  bg-dark  text-white" id="cno" placeholder="Enter Contact_No" name="contactno" required>
+                                    <div class="valid-feedback">Valid.</div>                                
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <h5><label for="uname">Username:</label></h5>
+                                    <input type="text" class="form-control mb-2 mr-sm-2 bg-dark text-white" id="uname" placeholder="Enter Username" name="username" required>
+                                    <div class="valid-feedback">Valid.</div>                                
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center" >
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <h5><label for="email">Email:</label></h5>
+                                    <input type="email" class="form-control mb-2 mr-sm-2  bg-dark text-white" id="email" placeholder="Enter Email_ID" name="email" required>
+                                    <div class="valid-feedback">Valid.</div>                                
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <h5><label for="pwd">Password:</label></h5>
+                                    <input type="password" class="form-control mb-2 mr-sm-2  bg-dark text-white" id="pwd" placeholder="Enter Password" name="password" required>
+                                    <div class="valid-feedback">Valid.</div>                                
+                                </div>
+                            </div>
+                        </div>                            
+                        <div class="row text-center" >
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <h5><label for="u_id">User_id:</label></h5>
+                                    <input type="number" class="form-control mb-2 mr-sm-2  bg-dark text-white" id="u_id" placeholder="Enter User_id" name="user_id" required>
+                                    <div class="valid-feedback">Valid.</div>                                
+                                </div>
+                            </div>
+                        </div>    
+                        <div class="row">
+                            <div class="col-6">
+                                <div>
+                                    <button type="submit" class="btn btn-danger m-4">Register</button>
+                                </div> 
+                            </div>
+                        </form>
+                            <div class="col-6">                                    
+                                <form action="{%url 'viewblogdetails'%}">
+                                    <button type="submit" class="btn btn-danger m-4">Back</button>
+                                </form>
+                            </div> 
+                        </div>                          
+                </div>                        
+        </div>                
+     </div>                                           
+            
+    </section>                         
+    </body>
+</html>

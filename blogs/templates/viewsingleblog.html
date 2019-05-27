@@ -1,0 +1,87 @@
+
+{%load staticfiles%}
+
+<html>
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+            <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+            <script src="{% static 'script/jquery.min.js' %}"></script>
+            <script src="{% static 'script/bootstrap.min.js' %}"></script>
+            <script src="{% static 'script/popper.min.js' %}"></script>
+            <style>
+            .cursor-ponter {
+                cursor: pointer;
+            }
+            </style>
+    </head>
+    <body class="bg-viewsingleblog">
+            
+<div class="text-center">
+    <form action="{%url 'viewblogdetails'%}" method="post">
+        {%csrf_token%}
+    {%if object%}
+    <div class="container">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8 border mt-5">
+                {%for x in object%}
+                
+                <div>
+                    <h2 class="text-center p-4">View Single Blog</h2>
+                    <ul class="list-unstyled font-weight-bold text-justify">
+                        <li class="list-group-item list-group-item-success">Title : {{x.title}}</li>
+                        <li class="list-group-item list-group-item-info">Short Description : {{x.shortdescription}}</li>
+                        {% if x.longdescription|wordcount > 50 %}
+                        <li class="list-group-item list-group-item-warning" id='short_long_desc'>Long Description : {{x.longdescription|safe|truncatewords:"50"|linebreaks }}
+                             <a href="#" class="cursor-ponter" onclick="show_detailed_long_desc()" >read more</a> 
+                        </li>
+                        <li class="list-group-item list-group-item-warning" id='long_desc' style="display:none;" >Long Description : {{x.longdescription }}
+                            <a href="#" class="cursor-ponter" onclick="show_short_long_desc()" >read less</a>
+                        </li>
+                        {%else%}
+                        <li class="list-group-item list-group-item-info">Short Description : {{x.longdescription}}</li>
+                        {%endif%}
+                        <li class="list-group-item list-group-item-danger">Image:<a href="#"  data-toggle="modal" data-target="#basicModal">Uploaded Image</a>
+                            <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">                                                        
+                                    <div class="modal-body">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <img src="{{x.image}}" width="350px" height="350px">
+                                    </div>                                                    
+                                    </div>
+                                </div>
+                            </div></li>
+                        <li class="list-group-item list-group-item-primary">Published_date : {{x.published_date}}</li>
+                        <li class="list-group-item list-group-item-secondary">Author : {{x.authorname}}</li>
+                    </ul>
+                </div>
+                {%endfor%}
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+        {%endif%}   
+        <div class="col-2"></div>              
+        <br><button type="submit" class="btn btn-danger">Back</button>   
+    </form>
+    </div>  
+
+        <script>
+                function show_detailed_long_desc() {
+                    document.getElementById("short_long_desc").style.display = "none";
+                    document.getElementById("long_desc").style.display = "block";
+                }
+                function show_short_long_desc() {
+                    document.getElementById("short_long_desc").style.display = "block";
+                    document.getElementById("long_desc").style.display = "none";
+                }
+        </script>
+    </body>
+</html>
+

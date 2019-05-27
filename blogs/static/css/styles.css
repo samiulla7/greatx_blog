@@ -1,0 +1,75 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.form-group{
+    text-align: left;
+}
+
+.truncate {
+    display: inline-block;
+    width: 150px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+
+
+.valid-feedback{
+    color: white;
+}
+
+.table tr td{
+    vertical-align: middle;
+
+}
+
+.table tr th{
+    vertical-align: middle;
+}
+
+
+.bg-registration {
+    background-image: url('/static/images/loginc.jpeg');
+    background-repeat: no-repeat;    
+    background-size: cover;
+}
+
+.bg_blogdetails {
+    background-image: url('/static/images/background.jpeg');
+    background-repeat: no-repeat;    
+    background-size: cover;
+    
+}
+
+.bg-viewblogdetails{
+    background-image: url('/static/images/saveblogdetails1.jpeg');
+    background-repeat: no-repeat;    
+    background-size: cover;
+}
+
+.bg-viewsingleblog{
+    background-image: url('/static/images/viewsingleblog1.jpg');
+    background-repeat: no-repeat;    
+    background-size: cover;
+}
+
+#textarea_message{
+  color: red;
+}
+
+.tab-space {
+    word-spacing:5em;
+  }
+
+a.tab-space{
+    white-space: 5em;
+}
+
+.was-validated input:focus{
+    color:white !important;
+}
+
+

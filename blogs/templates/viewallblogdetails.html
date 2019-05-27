@@ -1,0 +1,105 @@
+{% load staticfiles %}
+
+<html>
+    <head>
+        <title>view blog details</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <script src="{% static 'script/bootstrap.min.js' %}"></script>
+        <script src="{% static 'script/popper.min.js' %}"></script>
+        <script src="{% static 'script/bootstrap.min.js' %}"></script>
+    </head>
+    <body class="bg-viewblogdetails">
+        <section>
+        <div class="container-fluid">
+            <div class="row">                       
+                <div class="col-12   p-3 font-weight-bolder"><br>
+                    {% if object_list %}                       
+                    <div class='container border border-dark p-4 table-responsive'>
+                            <h2 class="p-4 text-white font-weight-bold text-center">View Blog Details</h2>
+                        <table  border="2" class="table table-dark text-center" >    
+                            <tr><br>
+                                <th>Title</th>
+                                <th>Image</th>
+                                <th>Published_date</th> 
+                                <th>Author</th>        
+                                <th>
+                                    <table class="text-white table text-center">
+                                        <tr>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                            <th>View</th>
+                                        </tr>
+                                    </table>
+                                </th>                                    
+                            </tr>
+                        {% for x in object_list %}
+                        <tr class="text_center">
+                            <td><span class='truncate'>{{x.title}}</span></td>                                
+                            <td><img src="{{x.image}}" height="100px" width="100px"></td>                                
+                            <td>{{x.published_date}}</td>
+                            <td>{{x.author}}</td>
+                            <td>
+                                <table class="table text-center">
+                                    <tr>
+                                        <th><a class="btn btn-warning  text-white " href="/edit/?edit={{x.id}}">Edit</a></th>
+                                        <th><a class="btn btn-danger  text-white " href="/delete/?del={{x.id}}">Delete</a></th>
+                                        <th><a class="btn btn-info  text-white " href="/viewsingleblog/?blog_id={{x.id}}">View</a></th>
+                                    </tr>
+                                </table>
+                            </td>                
+                        </tr>    
+                        {%endfor%}
+                        <div class="container">
+                        <div class="row">  
+                            <div class="col-6">  
+                            <span class="step-links">
+                                {% if object_list.has_previous %}
+                                    <a class="btn btn-dark  text-white " href="?page=1">&laquo; first</a>
+                                    <a class="btn btn-dark  text-white " href="?page={{ object_list.previous_page_number }}">previous</a>
+                                {% endif %}
+                        
+                                <span class="current">
+                                    Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+                                </span>
+                        
+                                {% if object_list.has_next %}
+                                    <a class="btn btn-dark  text-white " href="?page={{ object_list.next_page_number }}">next</a>
+                                    <a  class="btn btn-dark  text-white " href="?page={{ object_list.paginator.num_pages }}">last &raquo;</a>
+                                {% endif %}
+                            </span>
+                            </div> 
+                            <div class="col-6">
+                                <div class="row ">
+                                    <div class="col-6 text-right">                                                
+                                        <form action="{%url 'registrationform'%}">
+                                            <button type="submit" class="btn btn-dark">Create New Account</button>
+                                        </form>                                                
+                                    </div>                                
+                                    <div class="col-6 text-right">                                                
+                                        <form action="{%url 'enterblogdetails'%}">
+                                            <button type="submit" class="btn btn-dark">Add New Blog</button>
+                                        </form>                                                
+                                    </div>
+                                </div>
+                            </div>                               
+                        </div>
+                        </div><br>
+                        </table>    
+                    {%endif%}
+                    <div class="text-center">
+                        <h3>{{message}}</h3>
+                    </div>
+                    </div>   
+                </div>  
+               
+            </div>  
+        </div>
+        </section>  
+        {%for message in messages%}
+            <h2 class="text-center">{{message}}</h2>
+        {%endfor%}    
+    </body>
+</html>
