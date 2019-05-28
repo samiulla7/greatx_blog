@@ -23,15 +23,15 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.viewBlogDetails,name='viewblogdetails'),
-    path('registrationform/',views.registrationForm,name='registrationform'),
-    path('saveuserdetails/',views.saveUserDetails,name='saveuserdetails'),    
-    path('enterblogdetails/',views.enterBlogDetails,name='enterblogdetails'),
-    path('saveblogdetails/',views.saveBlogDetails,name='saveblogdetails'),    
-    path('edit/',views.editBlog,name='editblogdetails'),
-    path('editblogdetails/',views.editBlogDetails,name='editblogdetails'),
-    path('delete/',views.deleteBlogDetails,name='deleteblogdetals'),
-    path('viewsingleblog/',views.viewSingleBlog,name='viewsingleblog'),    
+    path('',views.view_blog_details,name='viewblogdetails'),
+    path('registrationform/',views.registration_form,name='registrationform'),
+    path('saveuserdetails/',views.save_user_details,name='saveuserdetails'),    
+    path('enterblogdetails/',views.enter_blog_details,name='enterblogdetails'),
+    path('saveblogdetails/',views.save_blog_details,name='saveblogdetails'),    
+    path('edit/',views.edit_blog,name='editblogdetails'),
+    path('editblogdetails/',views.edit_blog_details,name='editblogdetails'),
+    path('delete/',views.delete_blog_details,name='deleteblogdetals'),
+    path('viewsingleblog/',views.view_single_blog,name='viewsingleblog'),    
 ]
 
 if settings.DEBUG:

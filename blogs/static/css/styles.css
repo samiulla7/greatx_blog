@@ -30,6 +30,9 @@
     vertical-align: middle;
 }
 
+.table{
+    margin-bottom: -1rem;
+}
 
 .bg-registration {
     background-image: url('/static/images/loginc.jpeg');

@@ -10,10 +10,10 @@ from django.core.files.storage import FileSystemStorage
 from django.core.paginator import Paginator
 
 
-def registrationForm(request):
+def registration_form(request):
     return render(request,'registrationform.html')
 
-def saveUserDetails(request):
+def save_user_details(request):
     firstname = request.POST.get('firstname')
     lastname = request.POST.get('lastname')
     contactno = request.POST.get('contactno')
@@ -25,11 +25,11 @@ def saveUserDetails(request):
     messages.error(request,'Successfully Registered')
     return HttpResponseRedirect("/")
 
-def enterBlogDetails(request):
+def enter_blog_details(request):
     data = Registration.objects.all()
     return render(request,'blogdetails.html',{'object_list':data})
 
-def saveBlogDetails(request):
+def save_blog_details(request):
     if request.method == 'POST' and request.FILES['image']:
         author = request.POST.get('author')
         author = Registration.objects.get(username=author)
@@ -45,20 +45,20 @@ def saveBlogDetails(request):
         messages.error(request,'Blog Added')
         return HttpResponseRedirect("/")
 
-def viewBlogDetails(request):
+def view_blog_details(request):
     blog_list = BlogDetails.objects.all()
     paginator = Paginator(blog_list,10)    
     page = request.GET.get('page')   
     blog = paginator.get_page(page)    
     return render(request,'viewallblogdetails.html',{'object_list':blog})
 
-def editBlog(request):
+def edit_blog(request):
     blog_id = request.GET.get('edit')
     data = Registration.objects.all()
     data1 = BlogDetails.objects.filter(id=blog_id)
     return render(request,'blogdetails.html',{'blog_id':blog_id,'object_data':data1,'object_list':data})
 
-def editBlogDetails(request):
+def edit_blog_details(request):
     if request.method == 'POST':
         blog_id = request.POST.get('blog_id')
         author = request.POST.get('author')
@@ -85,13 +85,13 @@ def editBlogDetails(request):
         messages.error(request,'Blog Updated')
         return HttpResponseRedirect("/")    
 
-def deleteBlogDetails(request):
+def delete_blog_details(request):
     blog_id = request.GET.get('del')    
     BlogDetails.objects.filter(id=blog_id).delete()
     messages.error(request,'Blog Deleted')
     return HttpResponseRedirect("/")
 
-def viewSingleBlog(request):
+def view_single_blog(request):
     blog_id = request.GET.get('blog_id')
     data = BlogDetails.objects.filter(id=blog_id)
     return render(request,'viewsingleblog.html',{"object":data,'blog_id':blog_id})
